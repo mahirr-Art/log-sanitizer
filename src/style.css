@@ -135,3 +135,56 @@ button:hover {
 .btn-secondary:hover {
   background: var(--border);
 }
+
+/* Görev 2: Analiz paneli */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.stat-card .count {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.stat-total { color: var(--danger); }
+.stat-email { color: var(--primary); }
+.stat-key { color: var(--warning); }
+.stat-token { color: var(--success); }
+.stat-password { color: var(--purple); }
+
+.stats-summary {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  padding: 0.6rem;
+  border-radius: 6px;
+}
+
+.stats-summary.safe {
+  color: var(--success);
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.stats-summary.risk {
+  color: var(--warning);
+  background: rgba(251, 191, 36, 0.1);
+}

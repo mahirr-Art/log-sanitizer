@@ -14,6 +14,31 @@
       <p>Loglardaki API anahtarlarını, token'ları, şifreleri ve e-postaları paylaşmadan önce güvenle maskeleyin.</p>
     </header>
 
+    <!-- Görev 2: Maskeleme istatistikleri / analiz paneli -->
+    <section class="stats-grid" id="statsPanel" aria-label="Analiz paneli">
+      <div class="stat-card">
+        <h3>Toplam Risk</h3>
+        <div class="count stat-total" id="countTotal">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>E-Posta</h3>
+        <div class="count stat-email" id="countEmail">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>API Anahtarı</h3>
+        <div class="count stat-key" id="countKey">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Bearer / JWT</h3>
+        <div class="count stat-token" id="countToken">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Şifre</h3>
+        <div class="count stat-password" id="countPassword">0</div>
+      </div>
+    </section>
+    <p class="stats-summary" id="statsSummary">Henüz analiz yapılmadı.</p>
+
     <main class="editor-grid">
       <div class="pane">
         <label for="rawInput">Ham Log / Metin Girişi</label>

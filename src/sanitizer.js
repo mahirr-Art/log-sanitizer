@@ -55,22 +55,29 @@
     },
   ];
 
+  const CATEGORIES = ["email", "apiKey", "token", "password"];
+
   /**
-   * Metindeki hassas verileri maskeler.
+   * Metindeki hassas verileri maskeler ve tür bazında sayar.
    * @param {string} text Ham log / metin
-   * @returns {{ sanitizedText: string }}
+   * @returns {{ sanitizedText: string, counts: {email:number, apiKey:number, token:number, password:number, total:number} }}
    */
   function sanitize(text) {
     let output = String(text ?? "");
+    const counts = { email: 0, apiKey: 0, token: 0, password: 0, total: 0 };
 
     for (const rule of RULES) {
-      output = output.replace(rule.regex, (...args) => rule.replace(...args));
+      output = output.replace(rule.regex, (...args) => {
+        counts[rule.category] += 1;
+        return rule.replace(...args);
+      });
     }
 
-    return { sanitizedText: output };
+    counts.total = CATEGORIES.reduce((sum, c) => sum + counts[c], 0);
+    return { sanitizedText: output, counts };
   }
 
-  const api = { sanitize, RULES };
+  const api = { sanitize, RULES, CATEGORIES };
 
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
