@@ -10,17 +10,17 @@
 
 ## 📌 İş Takip Panosu
 
-🔗 **Pano:** [LogSanitizer – GitHub Projects](PANO_LINKI_BURAYA)
+🔗 **Pano:** [LogSanitizer – GitHub Projects](https://github.com/users/mahirr-Art/projects/2)
 
 Panoda **Yapılacak / Devam Ediyor / Tamamlandı** sütunları ve 5 görev kartı bulunur. Kart açıklamaları ve kabul kriterleri ayrıca [docs/BOARD.md](docs/BOARD.md) dosyasında yer alır.
 
 | # | Görev | Durum |
 |---|-------|-------|
-| 1 | Hassas veri tespit ve maskeleme motoru | ✅ Tamamlandı |
-| 2 | Maskeleme istatistikleri ve analiz paneli | ✅ Tamamlandı |
-| 3 | Maskelenmiş çıktıyı kopyalama / indirme | 📝 Yapılacak |
-| 4 | Özel maskeleme kuralı (custom regex) | 📝 Yapılacak |
-| 5 | Sürükle-bırak ile log dosyası yükleme | 📝 Yapılacak |
+| [#1](https://github.com/mahirr-Art/log-sanitizer/issues/1) | Hassas veri tespit ve maskeleme motoru | ✅ Tamamlandı |
+| [#2](https://github.com/mahirr-Art/log-sanitizer/issues/2) | Maskeleme istatistikleri ve analiz paneli | ✅ Tamamlandı |
+| [#3](https://github.com/mahirr-Art/log-sanitizer/issues/3) | Maskelenmiş çıktıyı kopyalama / indirme | 📝 Yapılacak |
+| [#4](https://github.com/mahirr-Art/log-sanitizer/issues/4) | Özel maskeleme kuralı (custom regex) | 📝 Yapılacak |
+| [#5](https://github.com/mahirr-Art/log-sanitizer/issues/5) | Sürükle-bırak ile log dosyası yükleme | 📝 Yapılacak |
 
 ---
 
@@ -46,6 +46,7 @@ Ardından tarayıcıda http://localhost:8000 adresini açın.
 ```bash
 npm test
 ```
+Testler her push'ta GitHub Actions (`.github/workflows/ci.yml`) ile otomatik çalışır.
 
 ---
 
