@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogSanitizer — DevSecOps Log & Secret Masker</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">DevSecOps Tool</span>
+      <h1>🛡️ LogSanitizer</h1>
+      <p>Loglardaki API anahtarlarını, token'ları, şifreleri ve e-postaları paylaşmadan önce güvenle maskeleyin.</p>
+    </header>
+
+    <main class="editor-grid">
+      <div class="pane">
+        <label for="rawInput">Ham Log / Metin Girişi</label>
+        <textarea id="rawInput" placeholder="Log içeriğini buraya yapıştırın..."></textarea>
+      </div>
+      <div class="pane">
+        <label for="sanitizedOutput">Maskelenmiş Çıktı (Güvenli)</label>
+        <textarea id="sanitizedOutput" readonly placeholder="Temizlenmiş log burada görüntülenecek..."></textarea>
+      </div>
+    </main>
+
+    <div class="actions">
+      <button id="btnSanitize">Metni Temizle &amp; Maskele</button>
+      <button id="btnSample" class="btn-secondary">Örnek Log Yükle</button>
+      <button id="btnClear" class="btn-secondary">Temizle</button>
+    </div>
+  </div>
+
+  <script src="src/sanitizer.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>

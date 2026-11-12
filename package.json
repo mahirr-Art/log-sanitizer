@@ -1,0 +1,11 @@
+{
+  "name": "log-sanitizer",
+  "version": "0.1.0",
+  "description": "Loglardaki API anahtarı, token, şifre ve e-postaları maskeleyen DevSecOps aracı",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "start": "npx --yes http-server -p 8000 -c-1 ."
+  },
+  "license": "MIT"
+}
