@@ -66,5 +66,55 @@
     resetStats();
   });
 
+  // Kart 3: kopyalama ve indirme
+  const btnCopy = document.getElementById("btnCopy");
+  const btnDownload = document.getElementById("btnDownload");
+
+  function flash(button, text) {
+    const original = button.dataset.label || button.textContent;
+    button.dataset.label = original;
+    button.textContent = text;
+    setTimeout(() => (button.textContent = original), 2000);
+  }
+
+  function copyFallback(text) {
+    output.select();
+    const ok = document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    return ok ? Promise.resolve() : Promise.reject(new Error("copy failed"));
+  }
+
+  btnCopy.addEventListener("click", () => {
+    const text = output.value;
+    if (!text) {
+      flash(btnCopy, "Önce metni temizleyin");
+      return;
+    }
+    const copy = navigator.clipboard
+      ? navigator.clipboard.writeText(text).catch(() => copyFallback(text))
+      : copyFallback(text);
+    copy.then(
+      () => flash(btnCopy, "Kopyalandı!"),
+      () => flash(btnCopy, "Kopyalanamadı")
+    );
+  });
+
+  btnDownload.addEventListener("click", () => {
+    const text = output.value;
+    if (!text) {
+      flash(btnDownload, "Önce metni temizleyin");
+      return;
+    }
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "sanitized_log.txt";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+
   resetStats();
 })();
