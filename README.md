@@ -18,7 +18,7 @@ Panoda **Yapılacak / Devam Ediyor / Tamamlandı** sütunları ve 5 görev kart�
 |---|-------|-------|
 | [#1](https://github.com/mahirr-Art/log-sanitizer/issues/1) | Hassas veri tespit ve maskeleme motoru | ✅ Tamamlandı |
 | [#2](https://github.com/mahirr-Art/log-sanitizer/issues/2) | Maskeleme istatistikleri ve analiz paneli | ✅ Tamamlandı |
-| [#3](https://github.com/mahirr-Art/log-sanitizer/issues/3) | Maskelenmiş çıktıyı kopyalama / indirme | 📝 Yapılacak |
+| [#3](https://github.com/mahirr-Art/log-sanitizer/issues/3) | Maskelenmiş çıktıyı kopyalama / indirme | ✅ Tamamlandı |
 | [#4](https://github.com/mahirr-Art/log-sanitizer/issues/4) | Özel maskeleme kuralı (custom regex) | 📝 Yapılacak |
 | [#5](https://github.com/mahirr-Art/log-sanitizer/issues/5) | Sürükle-bırak ile log dosyası yükleme | 📝 Yapılacak |
 
@@ -72,6 +72,11 @@ INFO login ok user=ali@example.com token=Bearer abc.def.ghi password=1234
    **Toplam Risk: 8 · E-Posta: 2 · API Anahtarı: 3 · Bearer/JWT: 2 · Şifre: 1**
 2. Kartların altında *"⚠️ 3 adet API anahtarı, 2 adet token, 1 adet şifre, 2 adet e-posta bulundu ve temizlendi."* özeti görünür.
 3. Sol alana hassas veri içermeyen bir metin yazıp (ör. `INFO server started`) tekrar temizleyin: tüm sayaçlar **0** olur ve *"✅ Hassas veri bulunamadı"* mesajı çıkar.
+
+### Özellik 3 — Kopyalama ve indirme
+1. Örnek logu temizledikten sonra **"Kopyala"** butonuna basın; buton kısa süreliğine **"Kopyalandı!"** yazar. Not Defteri'ne yapıştırarak maskelenmiş metni kontrol edin.
+2. **"İndir (.txt)"** butonuna basın; `sanitized_log.txt` dosyası iner ve içeriği sağ paneldekiyle aynıdır.
+3. Çıktı boşken bu butonlara basılırsa "Önce metni temizleyin" uyarısı görünür.
 
 ---
 
