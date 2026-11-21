@@ -15,7 +15,7 @@ Panoda 5 kart var:
 
 - #1 Hassas veri tespit ve maskeleme: tamamlandı
 - #2 İstatistik / analiz paneli: tamamlandı
-- #3 Çıktıyı kopyalama ve indirme: devam ediyor
+- #3 Çıktıyı kopyalama ve indirme: tamamlandı
 - #4 Özel regex kuralı ekleme: yapılacak
 - #5 Sürükle-bırak ile dosya yükleme: yapılacak
 
@@ -68,7 +68,7 @@ Maskelemeden sonra üstteki kartlarda kaç tane hassas veri bulunduğu türüne 
 
 Hassas veri içermeyen bir metin (mesela `INFO server started`) denerseniz bütün sayaçlar 0 oluyor ve "Hassas veri bulunamadı" mesajı çıkıyor.
 
-### 3. Kopyalama ve indirme (devam ediyor)
+### 3. Kopyalama ve indirme
 
 Maskelemeden sonra "Kopyala" butonu çıktıyı panoya kopyalıyor, "İndir (.txt)" butonu da `sanitized_log.txt` olarak indiriyor.
 
