@@ -1,96 +1,81 @@
-# 🛡️ LogSanitizer
+# LogSanitizer
 
-**LogSanitizer**, yazılımcıların ve DevOps mühendislerinin hata ayıklarken log/metin paylaştığı anlarda (GitHub issue, Slack, Stack Overflow, destek talebi vb.) yanlışlıkla **API anahtarı, şifre, JWT/Bearer token ve e-posta adresi** gibi hassas verileri sızdırmasını önlemek için geliştirilen bir DevSecOps aracıdır.
+Hata ayıklarken log paylaşmak çok sık yaptığımız bir şey: bir issue'ya, Slack kanalına ya da bir arkadaşa log yapıştırıyoruz. Bu loglarda bazen e-posta adresleri, API anahtarları, token'lar ya da şifreler kalıyor ve fark etmeden paylaşılıyor.
 
-**Kimin için?** Log paylaşmak zorunda kalan yazılım geliştiriciler, DevOps/SRE mühendisleri ve destek ekipleri için.
+LogSanitizer bu sorunu çözmek için yaptığım küçük bir web aracı. Logu yapıştırıyorsunuz, içindeki hassas bilgiler `[REDACTED_EMAIL]`, `[REDACTED_API_KEY]` gibi etiketlerle değiştiriliyor ve geriye güvenle paylaşılabilecek bir metin kalıyor.
 
-**Hangi problemi çözüyor?** Loglarda gömülü kalan gizli bilgiler fark edilmeden paylaşılabiliyor ve bu durum hesapların ele geçirilmesine, KVKK/GDPR ihlallerine yol açabiliyor. LogSanitizer, yapıştırılan metindeki bu verileri otomatik olarak tespit edip `[REDACTED_...]` etiketleriyle maskeler; böylece log güvenle paylaşılabilir.
+Log paylaşmak zorunda kalan geliştiriciler, DevOps ekipleri ve destek ekipleri için düşündüm.
 
----
+## Pano
 
-## 📌 İş Takip Panosu
+Görevleri GitHub Projects üzerinde takip ediyorum:
+https://github.com/users/mahirr-Art/projects/2
 
-🔗 **Pano:** [LogSanitizer – GitHub Projects](https://github.com/users/mahirr-Art/projects/2)
+Panoda 5 kart var:
 
-Panoda **Yapılacak / Devam Ediyor / Tamamlandı** sütunları ve 5 görev kartı bulunur. Kart açıklamaları ve kabul kriterleri ayrıca [docs/BOARD.md](docs/BOARD.md) dosyasında yer alır.
+- #1 Hassas veri tespit ve maskeleme: tamamlandı
+- #2 İstatistik / analiz paneli: tamamlandı
+- #3 Çıktıyı kopyalama ve indirme: devam ediyor
+- #4 Özel regex kuralı ekleme: yapılacak
+- #5 Sürükle-bırak ile dosya yükleme: yapılacak
 
-| # | Görev | Durum |
-|---|-------|-------|
-| [#1](https://github.com/mahirr-Art/log-sanitizer/issues/1) | Hassas veri tespit ve maskeleme motoru | ✅ Tamamlandı |
-| [#2](https://github.com/mahirr-Art/log-sanitizer/issues/2) | Maskeleme istatistikleri ve analiz paneli | ✅ Tamamlandı |
-| [#3](https://github.com/mahirr-Art/log-sanitizer/issues/3) | Maskelenmiş çıktıyı kopyalama / indirme | ✅ Tamamlandı |
-| [#4](https://github.com/mahirr-Art/log-sanitizer/issues/4) | Özel maskeleme kuralı (custom regex) | 📝 Yapılacak |
-| [#5](https://github.com/mahirr-Art/log-sanitizer/issues/5) | Sürükle-bırak ile log dosyası yükleme | 📝 Yapılacak |
+Kartların açıklamaları ve kabul kriterleri issue'larda ve [docs/BOARD.md](docs/BOARD.md) dosyasında.
 
----
+## Çalıştırma
 
-## 🚀 Projeyi Çalıştırma
-
-Proje saf HTML + JavaScript ile yazılmıştır; kurulum veya sunucu gerektirmez.
+Herhangi bir kurulum gerekmiyor, sadece HTML ve JavaScript.
 
 ```bash
 git clone https://github.com/mahirr-Art/log-sanitizer.git
 cd log-sanitizer
 ```
 
-**Seçenek A (en kolay):** `index.html` dosyasına çift tıklayarak tarayıcıda açın.
+Sonra `index.html` dosyasını tarayıcıda açmanız yeterli.
 
-**Seçenek B (yerel sunucu):**
+İsterseniz yerel sunucuyla da açabilirsiniz:
+
 ```bash
 python -m http.server 8000
-# veya: npm start
 ```
-Ardından tarayıcıda http://localhost:8000 adresini açın.
 
-**Testleri çalıştırma** (Node.js 18+ gerekir, ek paket kurulmaz):
+ve http://localhost:8000 adresine gidin.
+
+Testler için (Node.js 18 veya üstü):
+
 ```bash
 npm test
 ```
-Testler her push'ta GitHub Actions (`.github/workflows/ci.yml`) ile otomatik çalışır.
 
----
+Testler GitHub Actions ile her push'ta da çalışıyor.
 
-## 🧪 İki Özelliği Deneme
+## Özellikleri deneme
 
-### Özellik 1 — Hassas veri tespit ve maskeleme motoru
-1. Sayfayı açın, **"Örnek Log Yükle"** butonuna tıklayın (veya kendi logunuzu sol alana yapıştırın).
-2. **"Metni Temizle & Maskele"** butonuna basın.
-3. Sağ alanda şunları gözlemleyin:
-   - `developer.john@testcorp.com` → `[REDACTED_EMAIL]`
-   - `Bearer eyJhbGci...` → `Bearer [REDACTED_BEARER_TOKEN]`
-   - `AKIAIOSFODNN7EXAMPLE` ve `apiKey=3a7b...` → `[REDACTED_API_KEY]`
-   - `password=SuperGizli123!` → `password=[REDACTED_PASSWORD]`
-   - Zaman damgaları ve diğer log metni **değişmeden** kalır.
+### 1. Maskeleme
 
-Kendiniz denemek için şu satırı yapıştırabilirsiniz:
+1. "Örnek Log Yükle" butonuna basın (ya da kendi logunuzu sol tarafa yapıştırın).
+2. "Metni Temizle & Maskele" butonuna basın.
+3. Sağ tarafta e-postaların, Bearer/JWT token'ların, API anahtarlarının ve şifrelerin maskelendiğini, logun geri kalanının aynı kaldığını görebilirsiniz.
+
+Denemek için şu satırı da kullanabilirsiniz:
+
 ```
 INFO login ok user=ali@example.com token=Bearer abc.def.ghi password=1234
 ```
 
-### Özellik 2 — Maskeleme istatistikleri ve analiz paneli
-1. Örnek log ile maskeleme yaptıktan sonra üstteki sayaç kartlarına bakın:
-   **Toplam Risk: 8 · E-Posta: 2 · API Anahtarı: 3 · Bearer/JWT: 2 · Şifre: 1**
-2. Kartların altında *"⚠️ 3 adet API anahtarı, 2 adet token, 1 adet şifre, 2 adet e-posta bulundu ve temizlendi."* özeti görünür.
-3. Sol alana hassas veri içermeyen bir metin yazıp (ör. `INFO server started`) tekrar temizleyin: tüm sayaçlar **0** olur ve *"✅ Hassas veri bulunamadı"* mesajı çıkar.
+### 2. Analiz paneli
 
-### Özellik 3 — Kopyalama ve indirme
-1. Örnek logu temizledikten sonra **"Kopyala"** butonuna basın; buton kısa süreliğine **"Kopyalandı!"** yazar. Not Defteri'ne yapıştırarak maskelenmiş metni kontrol edin.
-2. **"İndir (.txt)"** butonuna basın; `sanitized_log.txt` dosyası iner ve içeriği sağ paneldekiyle aynıdır.
-3. Çıktı boşken bu butonlara basılırsa "Önce metni temizleyin" uyarısı görünür.
+Maskelemeden sonra üstteki kartlarda kaç tane hassas veri bulunduğu türüne göre görünüyor. Örnek log için sonuç şöyle olmalı: toplam 8, e-posta 2, API anahtarı 3, token 2, şifre 1.
 
----
+Hassas veri içermeyen bir metin (mesela `INFO server started`) denerseniz bütün sayaçlar 0 oluyor ve "Hassas veri bulunamadı" mesajı çıkıyor.
 
-## 📁 Proje Yapısı
+### 3. Kopyalama ve indirme (devam ediyor)
 
-```
-log-sanitizer/
-├── index.html              # Arayüz
-├── src/
-│   ├── sanitizer.js        # Maskeleme motoru + sayaçlar (Görev 1 & 2)
-│   ├── app.js              # Arayüz mantığı ve analiz paneli
-│   └── style.css
-├── tests/
-│   ├── sanitizer.test.js   # Görev 1 kabul kriteri testleri
-│   └── stats.test.js       # Görev 2 kabul kriteri testleri
-└── docs/BOARD.md           # Pano kartları ve kabul kriterleri
-```
+Maskelemeden sonra "Kopyala" butonu çıktıyı panoya kopyalıyor, "İndir (.txt)" butonu da `sanitized_log.txt` olarak indiriyor.
+
+## Dosyalar
+
+- `index.html`: arayüz
+- `src/sanitizer.js`: maskeleme kuralları ve sayaçlar
+- `src/app.js`: butonlar ve panel
+- `src/style.css`: stiller
+- `tests/`: testler
